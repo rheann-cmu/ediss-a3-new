@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-bff-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-app-bff-deployment
+  template:
+    metadata:
+      labels:
+        app: web-app-bff-deployment
+    spec:
+      containers:
+        - name: web-app-bff-deployment-container
+          image: rheann/webappbff-a2:latest # Image name of book service
+          ports:
+            - containerPort: 8081 # Container Port
+          livenessProbe:
+            httpGet:
+              path: /status
+              port: 8081 # Port name of liveness probe
+            initialDelaySeconds: 180
+            periodSeconds: 30

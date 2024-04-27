@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: customer-deployment
+  template:
+    metadata:
+      labels:
+        app: customer-deployment
+    spec:
+      containers:
+        - name: customer-deployment-container
+          image: rheann/customerwebservice-image-a2:latest # Image name of book service
+          ports:
+            - containerPort: 3000 # Container Port
+          livenessProbe:
+            httpGet:
+              path: /status
+              port: 3000 # Port name of liveness probe
+            initialDelaySeconds: 180
+            periodSeconds: 30

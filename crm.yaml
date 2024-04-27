@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crm-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crm-deployment
+  template:
+    metadata:
+      labels:
+        app: crm-deployment
+    spec:
+      containers:
+        - name: crm-deployment-container
+          image: rheann/crmapp-image-a2:latest # Image name of book service
+          ports:
+            - containerPort: 8080 # Container Port

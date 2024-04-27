@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: book-deployment
+  template:
+    metadata:
+      labels:
+        app: book-deployment
+    spec:
+      containers:
+        - name: book-deployment-container
+          image: rheann/bookwebservice-image-a2:latest # Image name of book service 
+          ports:
+            - containerPort: 3000 # Container Port 
+          livenessProbe:
+            httpGet:
+              path: /status
+              port: 3000 # Port name of liveness probe 
+            initialDelaySeconds: 180
+            periodSeconds: 30
+          volumeMounts:
+            - mountPath: /circuit-state
+              name: circuit-state-volume
+      volumes:
+        - name: circuit-state-volume
+          emptyDir:
+            sizeLimit: 500Mi
