@@ -1,4 +1,4 @@
-a58f1859e1b344681b1b56f88c06b545-732607244.us-east-1.elb.amazonaws.com:80
-abdec31319089442999ff9b6d903d4d2-2138344596.us-east-1.elb.amazonaws.com
+http://a58f1859e1b344681b1b56f88c06b545-732607244.us-east-1.elb.amazonaws.com:80
+http://abdec31319089442999ff9b6d903d4d2-2138344596.us-east-1.elb.amazonaws.com
 rsequeir
 rsequeir@andrew.cmu.edu
